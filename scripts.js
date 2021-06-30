@@ -5,7 +5,7 @@ var target = 900;
 distance();
 
 function distance () {
-  fetch('https://www.strava.com/api/v3/clubs/953670/activities?access_token=9d660904e69951318ffbb91c1875c0f5d28e87c4&after=1624802400')
+  fetch('https://www.strava.com/api/v3/clubs/953670/activities?access_token=c085e1d4cc80d78441d8f3f99635bc291894b958&after=1624802400')
   .then(function(resp) {
     resp.json().then(function(data) {
       var p = 0;
