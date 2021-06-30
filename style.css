@@ -14,23 +14,25 @@ BEETROOT: #B51E6D */
     background-color: #142F4C;
   }
 
-
+.ctas {
+  display: flex;
+  justify-content: center;
+}
 
   .row {
     display: table;
-    background-color: #fc4c02;
-    
+    width: 400px;
     border: 1px solid transparent;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-
+    margin: 0px 20px;
+   
   }
 
   .strava {
-display: flex;
-justify-content: center;
 
+background-color: #fc4c02;
 
   }
   .col {
@@ -139,3 +141,42 @@ justify-content: center;
 .goal-number {
   font-weight: bold;
 }
+
+#roktCalendar{
+  -webkit-font-smoothing: antialiased;
+  box-sizing: inherit;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+  /* border: none;*/
+  border-radius: 8px; 
+  text-decoration: none;
+  color: white;
+  background-color: #B51E6D;
+  text-align: center;
+  height: auto;
+  /* font-size: 2rem; */
+  padding: 20px 0px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  width: 400px;
+  transition: .3s ease-out
+}
+
+#calendarIcon {
+  font-size: 2rem; 
+  margin-right: 0.3rem;
+  }
+@media screen  and (max-width: 500px) {
+  #roktCalendar{ 
+    font-size: 1rem;
+    padding:1rem;
+    }
+    #calendarIcon {
+      font-size: 1rem;
+    }
+  }
