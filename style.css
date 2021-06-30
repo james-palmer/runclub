@@ -24,6 +24,14 @@ BEETROOT: #B51E6D */
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+
+  }
+
+  .strava {
+display: flex;
+justify-content: center;
+
+
   }
   .col {
     display: table-cell;
@@ -61,7 +69,7 @@ BEETROOT: #B51E6D */
   padding: 20px;
   font-family: arial;
   max-width: 650px;
-  margin: 50px auto 300px;
+  margin: 50px auto 000px;
 }
 
 #goal {
@@ -99,17 +107,14 @@ BEETROOT: #B51E6D */
 ;
 }
 #currentProgress {
-  display: flex;
+  display: block;
   margin-bottom: 0px;
   height: 100px;
-  
+  text-align: right;
 }
 #currentProgress img {
   width: 100px;
   height: 100px;
-
-  display: flex;
-  position: relative;
   right: 10px;
 }
 

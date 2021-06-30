@@ -25,10 +25,8 @@ function distance () {
       document.getElementById('result').innerHTML = meters;
       document.getElementById('progress').style.width = progress+"%";
       document.getElementById('currentProgress').style.width = progress+"%";
-      document.getElementById('currentKm').style.width = meters+"km";
-
+      // document.getElementById('currentKm').style.width = meters+"km";
     });
-    
   }).catch(function(err) {
     console.debug(err);
   });
@@ -39,11 +37,3 @@ function distance () {
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
-
-function getKmText(meters) {
-  var total = (meters / 1000).toFixed(4).split('.');
-  var major = total[0],
-      minor = total[1];
-  return  '<span class="text--large">'+major+'.</span>\n'+
-          '<span class="text">'+minor+'km</span>';
-} 
