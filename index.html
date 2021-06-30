@@ -26,41 +26,39 @@
   <script type="text/javascript">
 
   </script>
+<div class="ctas">
+  <div class="row strava">
+    <a class="col strava-badge" target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club"></a>
+    <div class="col" >
+      <span id="result" class="text--large">--</span>
+      <span class="text">km</span>
+    </div>
+    <div class="col text" id="club-info">
+      <span class="text" id="club-name">Rokt Run Club</span><br />
+      <span class="text--small" id="club-period">Runs since 28th June 2021</span>
+    </div>
+  </div>
+  <div class="row beetroot">
+    <a  id="roktCalendar" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">        
+      <span class="mdi mdi-calendar-plus"></span>Add to Calendar
+    </a>
+  </div>
+</div>  
+
 <div id=countdown-wrap>
+  <h2>Lockdown Run Club Total</h2>
   <div id="currentProgress" class="goal-stat">
-    <span id="currentKm" class="goal-label"></span>
     <img src="runner.png">
   </div>
-
-
   <div id="glass">
     <div id="progress">
     </div>
   </div>
   <div class="goal-stat">
-    <span class="goal-label">0km</span>
+      <span id="currentKm" class="goal-label"></span>
   </div>
   <div id="goal">900km</div>
-
 </div>
-<div class="ctas">
-<div class="row strava">
-  <a class="col strava-badge" target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club"></a>
-  <div class="col" >
-    <span id="result" class="text--large">--</span>
-    <span class="text">km</span>
-  </div>
-  <div class="col text" id="club-info">
-    <span class="text" id="club-name">Rokt Run Club</span><br />
-    <span class="text--small" id="club-period">Runs since 28th June 2021</span>
-  </div>
-</div>
-
-<div class="row">
-<a  id="roktCalendar" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">        
-   <span class="mdi mdi-calendar-plus"></span>Add to Calendar
-</a>
-</div>
-</div>
+<div ><span id="runCount"></span></div>
 </body>
 </html>
