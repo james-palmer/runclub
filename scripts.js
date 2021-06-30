@@ -24,6 +24,8 @@ function distance () {
       console.log(progress);
       document.getElementById('result').innerHTML = meters;
       document.getElementById('progress').style.width = progress+"%";
+      document.getElementById('currentProgress').style.width = progress+"%";
+      document.getElementById('currentKm').style.width = meters+"km";
 
     });
     
@@ -32,27 +34,6 @@ function distance () {
   });
   
 }
-
-// function setTickerInterval(elem, meters) {
-  
-//   localStorage.setItem('total', meters);
-//   console.log(meters);
-  
-//   var inc = parseFloat(meters / (30 * 24 * 60 * 60)).toFixed(4);
-//   localStorage.setItem('inc', inc);
-//   console.log(inc);
-  
-//   setInterval(function() {
-//     newTotal = (parseFloat(localStorage.getItem('total')) 
-//     + parseFloat(localStorage.getItem('inc')))
-//     .toFixed(4);
-    
-//     elem.innerHTML = getKmText(newTotal);
-//     localStorage.setItem('total', newTotal);
-    
-//     console.log(newTotal);
-//   }, 1000);
-// }
 
 
 function round(value, decimals) {

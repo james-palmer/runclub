@@ -85,15 +85,36 @@ BEETROOT: #B51E6D */
 
 #progress {
   float: left;
-  width: 56%;
+  width: 0%;
   height: 20px;
   background: #B51E6D;
   z-index: 333;
 
 }
 
+#currentKm {
+  text-align: right;
+  bottom:0px;
+  position: relative;
+;
+}
+#currentProgress {
+  display: flex;
+  margin-bottom: 0px;
+  height: 100px;
+  
+}
+#currentProgress img {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  position: relative;
+  right: 10px;
+}
+
 .goal-stat {
-  width: 25%;
+  width: 0%;
   height: 30px;
   padding: 10px;
   float: left;
