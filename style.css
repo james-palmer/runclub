@@ -1,0 +1,115 @@
+html { font-size: 62.5%; } /* most often 10px*/
+
+/* BLACK: #25211F
+BEETROOT: #B51E6D */
+
+  body { font-size: 1.6rem; }
+  span { display: inline-block;}
+  html, body {
+    font-family: 'Droid Serif', serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: #142F4C;
+  }
+
+
+
+  .row {
+    display: table;
+    background-color: #fc4c02;
+    
+    border: 1px solid transparent;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+  }
+  .col {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  .text {
+    font-size: 1.25rem; /*16px probably?*/
+  }
+  .text--large {
+    font-size: 3.2rem; /*24px probably?*/
+  }
+  .text--small {
+    font-size: 1rem;
+  }
+  #result {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .strava-badge img {
+    visibility: hidden;
+  }
+  .strava-badge { 
+    height: 50px; 
+    width: 50px; 
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAA9lBMVEUAAACZAADzQQD5SQL6SwL5SwD4SgD5SgD6SwD6SwD7SwD7TAD8TAL8TQP8TgT8TgX8UAj8UQn8VA38VQ/8VxL8WBP8XBj8XRr8Xx38YR/8YSD8YiH8Zib8aCr8bzT8czn8dj38dz/8fkn8hlT9ay79bC/9cTb9eUH9e0X9gEz9hVP9hlT9h1b9i1v9jV79lmr9m3H9nXX9nnX9oHn9pH/9pYD9rYv9r479tZf9vaL+kGP+k2b+lWr+mnD+nXX+o33+pH7+w6r+xaz+zbf+1MH+1sX+28z+4tb+6N7+7ub+8uz+9fD+9vL++vf+/Pr+/Pv+/v3///6EfFEQAAAADHRSTlMABSuPk7zU1fLz/P3uH4g+AAABoElEQVR4AZXWx27jQAzGccVSbMf72U6U3nvvhem994Tv/zLL4RrBApPRUL+DPQf+Ad3IxKmk1Toi6tW0kvzTlf2BSSPr0vlumHW7IkMJmXx/A57ZWQQ0KkkK390dQtKkBs8U8xQCqkkPPLfMtwioJ/BMfjN/TyLAD3DC4sQejH+y+Bw3B8esjq3B8Aerj2FjcMgdh7Zg8J073gdNAfEPsgT5K/94zQ3BHv9nLx70vbDz8MDOS1802Ga1scFqOxa0n9l5brU6j3Yk2GK1A+yw2ioOmk/svPUD/W/sPDULg3lWRxBHrOYLg0d2vsYgxr7YeSwK5ljdQN2wmisI7llNQ02zuv818JySGIEYIXEaDSZIrEGskZiIBjiXsescyK/lcY54sEBiGVgmsWAImhcyeNlqXcrfRdMQYInE4iKJJViC9q6Mnp3Jz27bFGCGOmZgC3r3Se33GgOskFqBNcivSFzl5gCrJFZhDwYOiA4GvKCOoHWidX+h1BA0RDTkr6wUYZub/lLUtRsyOuqv3fKLvfTpIEXWKHWciEpa67GeP38BvhC4JRR8pYwAAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+#countdown-wrap {
+  width: 100%;
+  height: 300px;
+
+  padding: 20px;
+  font-family: arial;
+  max-width: 650px;
+  margin: 50px auto 300px;
+}
+
+#goal {
+  font-size: 48px;
+  text-align: right;
+  color: #FFF;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }
+  
+}
+
+#glass {
+  width: 100%;
+  height: 20px;
+  background: #c7c7c7;
+  border-radius: 10px;
+  float: left;
+  overflow: hidden;
+}
+
+#progress {
+  float: left;
+  width: 56%;
+  height: 20px;
+  background: #B51E6D;
+  z-index: 333;
+
+}
+
+.goal-stat {
+  width: 25%;
+  height: 30px;
+  padding: 10px;
+  float: left;
+  margin: 0;
+  color: #FFF;
+  
+  @media only screen and (max-width : 640px) {
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.goal-number, .goal-label {
+  display: block;
+}
+
+.goal-number {
+  font-weight: bold;
+}

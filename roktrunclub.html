@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Strava Club Distance</title>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+  <style type="text/css">
+  html { font-size: 62.5%; } /* most often 10px*/
+  body { font-size: 1.6rem; }
+  span { display: inline-block;}
+  html, body {
+    font-family: 'Droid Serif', serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+  .row {
+    display: table;
+    background-color: #fc4c02;
+    
+    border: 1px solid transparent;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+  }
+  .col {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  .text {
+    font-size: 1.25rem; /*16px probably?*/
+  }
+  .text--large {
+    font-size: 3.2rem; /*24px probably?*/
+  }
+  .text--small {
+    font-size: 1rem;
+  }
+  #result {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .strava-badge img {
+    visibility: hidden;
+  }
+  .strava-badge { 
+    height: 50px; 
+    width: 50px; 
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAA9lBMVEUAAACZAADzQQD5SQL6SwL5SwD4SgD5SgD6SwD6SwD7SwD7TAD8TAL8TQP8TgT8TgX8UAj8UQn8VA38VQ/8VxL8WBP8XBj8XRr8Xx38YR/8YSD8YiH8Zib8aCr8bzT8czn8dj38dz/8fkn8hlT9ay79bC/9cTb9eUH9e0X9gEz9hVP9hlT9h1b9i1v9jV79lmr9m3H9nXX9nnX9oHn9pH/9pYD9rYv9r479tZf9vaL+kGP+k2b+lWr+mnD+nXX+o33+pH7+w6r+xaz+zbf+1MH+1sX+28z+4tb+6N7+7ub+8uz+9fD+9vL++vf+/Pr+/Pv+/v3///6EfFEQAAAADHRSTlMABSuPk7zU1fLz/P3uH4g+AAABoElEQVR4AZXWx27jQAzGccVSbMf72U6U3nvvhem994Tv/zLL4RrBApPRUL+DPQf+Ad3IxKmk1Toi6tW0kvzTlf2BSSPr0vlumHW7IkMJmXx/A57ZWQQ0KkkK390dQtKkBs8U8xQCqkkPPLfMtwioJ/BMfjN/TyLAD3DC4sQejH+y+Bw3B8esjq3B8Aerj2FjcMgdh7Zg8J073gdNAfEPsgT5K/94zQ3BHv9nLx70vbDz8MDOS1802Ga1scFqOxa0n9l5brU6j3Yk2GK1A+yw2ioOmk/svPUD/W/sPDULg3lWRxBHrOYLg0d2vsYgxr7YeSwK5ljdQN2wmisI7llNQ02zuv818JySGIEYIXEaDSZIrEGskZiIBjiXsescyK/lcY54sEBiGVgmsWAImhcyeNlqXcrfRdMQYInE4iKJJViC9q6Mnp3Jz27bFGCGOmZgC3r3Se33GgOskFqBNcivSFzl5gCrJFZhDwYOiA4GvKCOoHWidX+h1BA0RDTkr6wUYZub/lLUtRsyOuqv3fKLvfTpIEXWKHWciEpa67GeP38BvhC4JRR8pYwAAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <a class="col strava-badge" target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club"></a>
+    <div class="col" id="result">
+      <span class="text--large"></span>
+      <span class="text">4567 km</span>
+    </div>
+    <div class="col text" id="club-info">
+      <span class="text" id="club-name">Rokt Run Club</span><br />
+      <span class="text--small" id="club-period"><strong>Run</strong> to date</span>
+    </div>
+  </div>
+  <script type="text/javascript">
+  var result = document.getElementById('result');
+  distance();
+  
+  function distance () {
+    fetch('https://www.strava.com/api/v3/clubs/953670/activities?access_token=e2fdf0035cdea4ad570b3770c958ed3afcf497fd')
+    .then(function(resp) {
+      resp.json().then(function(data) {
+        var p = 0;
+        
+        data.filter(function(activity) {
+          return activity.type === 'Run' && oneMonthEarlier(activity.start_date);
+        })
+        .map(function (activity) {
+          p += round(activity.distance, 4);
+        });
+        
+        var meters = parseFloat(p).toFixed(2);
+        result.innerHTML = getKmText(meters);
+        setTickerInterval(result, meters);
+      });
+      
+    }).catch(function(err) {
+      console.debug(err);
+    });
+    
+  }
+  
+  function setTickerInterval(elem, meters) {
+    
+    localStorage.setItem('total', meters);
+    console.log(meters);
+    
+    var inc = parseFloat(meters / (30 * 24 * 60 * 60)).toFixed(4);
+    localStorage.setItem('inc', inc);
+    console.log(inc);
+    
+    setInterval(function() {
+      var newTotal = (parseFloat(localStorage.getItem('total')) 
+      + parseFloat(localStorage.getItem('inc')))
+      .toFixed(4);
+      
+      elem.innerHTML = getKmText(newTotal);
+      localStorage.setItem('total', newTotal);
+      
+      console.log(newTotal);
+    }, 1000);
+  }
+  
+  function oneMonthEarlier(date) {
+    var today = new Date();
+    var previousMonth = today.getMonth() === 0 ? '11' : ('0'+(today.getMonth()));
+    var currentDay = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();
+    var year = today.getFullYear();
+    if(previousMonth === '11') {
+      year = today.getFullYear()-1;
+    }
+    return new Date(date) > new Date(year + '-'+previousMonth+'-'+currentDay+'T00:00:00Z')
+  }
+  
+  function round(value, decimals) {
+    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  }
+  
+  function getKmText(meters) {
+    var total = (meters / 1000).toFixed(4).split('.');
+    var major = total[0],
+        minor = total[1];
+    return  '<span class="text--large">'+major+'.</span>\n'+
+            '<span class="text">'+minor+'km</span>';
+  } 
+  </script>
+</body>
+</html>
