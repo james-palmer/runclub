@@ -1,3 +1,17 @@
+var accessToken;
+
+fetch("https://www.strava.com/api/v3/oauth/token", {
+  body: "client_id=67886&client_secret=a1c26e6e240b2f33f9a7b238beb67e3429064745&grant_type=refresh_token&refresh_token=c3f97d70bc5ec4ea18b5e5774d1e6517787d7a0a",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  method: "POST"
+})
+.then(response => response.json())
+.then(data => accessToken = data.access_token)
+.then(console.log(accessToken))
+;
+
 var result = document.getElementById('result');
 var newTotal = 0;
 var target = 900;
@@ -5,7 +19,7 @@ var target = 900;
 distance();
 
 function distance () {
-  fetch('https://www.strava.com/api/v3/clubs/953670/activities?access_token=c085e1d4cc80d78441d8f3f99635bc291894b958&after=1624802400')
+  fetch('https://www.strava.com/api/v3/clubs/953670/activities?access_token=e4c3f1bbcdabad2e158c493aebd0b201ed5557ba&after=1624802400&per_page=200')
   .then(function(resp) {
     resp.json().then(function(data) {
       var p = 0;
@@ -38,7 +52,6 @@ function distance () {
   });
   
 }
-
 
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
