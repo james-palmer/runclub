@@ -16,6 +16,10 @@ BEETROOT: #B51E6D */
     overflow: hidden;
   }
 
+  a {
+    color:white;
+  }
+
 .ctas {
   display: flex;
   justify-content: center;

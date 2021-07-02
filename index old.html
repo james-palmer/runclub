@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Rokt Run Club</title>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+<!-- ROKT CALENDAR -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src ='https://assets.roktcalendar.com/scripts/widget-loader.min.js';fjs.parentNode.insertBefore(js,fjs);}(document,'script', 'calreply-wjs');</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.8.55/css/materialdesignicons.min.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JV61ENYB7J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JV61ENYB7J');
+</script>
+<script>
+  var accessToken;
+  var stravaUrl;
+  fetch("https://www.strava.com/api/v3/oauth/token", {
+    body: "client_id=67886&client_secret=a1c26e6e240b2f33f9a7b238beb67e3429064745&grant_type=refresh_token&refresh_token=c3f97d70bc5ec4ea18b5e5774d1e6517787d7a0a",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    method: "POST"
+  })
+  .then(response => response.json())
+  .then(function(data){ 
+    accessToken = data.access_token
+    stravaUrl =
+    console.log(accessToken)
+  })
+  .then(function distance () {
+    console.log( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1624802400&per_page=200");
+    fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1624802400&per_page=200")
+    .then(function(resp) {
+      resp.json().then(function(data) {
+        var p = 0;
+        var rc = 0;
+    console.log(data);
+
+        data.filter(function(activity) {
+          return activity.type === 'Run' 
+          // && oneMonthEarlier(activity.start_date)
+          ;
+        })
+        .map(function (activity) {
+          p += round(activity.distance, 4);
+          rc += 1;
+        });
+
+        var meters = parseFloat(p/1000).toFixed(0);
+        var progress = (meters/target)*100;
+        var runCount = rc;
+        console.log(meters);
+        console.log(progress);
+        document.getElementById('result').innerHTML = meters;
+        document.getElementById('progress').style.width = progress+"%";
+        document.getElementById('currentProgress').style.width = progress+"%";
+        document.getElementById('currentKm').style.width = meters+"km";
+        // document.getElementById('runCount').innerHTML = runCount+" runs recorded";
+      });
+    }).catch(function(err) {
+      console.debug(err);
+    });
+
+  })
+  ;
+  var result = document.getElementById('result');
+  var newTotal = 0;
+  var target = 900;
+
+  function round(value, decimals) {
+    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  }
+</script>
+<style>
+
+</style>
+
+</head>
+<body>
+  
+  <script type="text/javascript">
+
+  </script>
+<div class="ctas">
+  <div class="row strava">
+    <a class="col strava-badge" target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club"></a>
+    <div class="col" >
+      <span id="result" class="text--large">--</span>
+      <span class="text">km</span>
+    </div>
+    <div class="col text" id="club-info">
+      <span class="text" id="club-name">Rokt Run Club</span><br />
+      <span class="text--small" id="club-period">Runs since 28th June 2021</span>
+    </div>
+  </div>
+  <div class="row beetroot">
+    <a  id="roktCalendar" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">        
+      <span class="mdi mdi-calendar-plus"></span>Add to Calendar
+    </a>
+  </div>
+</div>  
+
+<div id=countdown-wrap>
+  <h2>Lockdown Run Club</h2>
+  <div id="currentProgress" class="goal-stat">
+    <img src="runner.png">
+  </div>
+  <div id="glass">
+    <div id="progress">
+    </div>
+  </div>
+  <div class="goal-stat">
+      <span id="currentKm" class="goal-label"></span>
+  </div>
+  <div id="goal"></div>
+</div>
+<!-- <div><span id="runCount"></span></div> -->
+<!--
+Most distance
+Quickest min5k
+Most runs
+Longest time spent running
+
+-->
+</body>
+</html>
