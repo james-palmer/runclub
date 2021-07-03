@@ -148,6 +148,67 @@ left: -7rem;
   height: 100%
 }
 
+.table {
+	width:100%;
+	border:1px solid white;
+  border-radius: 8px;
+  color: white;
+  margin-top: 2rem;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:#B51E6D;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.table-row {
+	display:flex;
+	width:100%;
+	padding:($half-spacing-unit * 1.5) 0;
+	
+	&:nth-of-type(odd) {
+		background:$color-form-highlight;
+	}
+}
+
+.table-data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+}
+
+.header__item {
+	text-transform:uppercase;
+}
+
+.filter__link {
+	color:white;
+	text-decoration: none;
+	position:relative;
+	display:inline-block;
+	padding-left:$base-spacing-unit;
+	padding-right:$base-spacing-unit;
+	
+	&::after {
+		content:'';
+		position:absolute;
+		right:-($half-spacing-unit * 1.5);
+		color:white;
+		font-size:$half-spacing-unit;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	&.desc::after {
+		content: '(desc)';
+	}
+
+	&.asc::after {
+		content: '(asc)';
+	}
+	
+}
 @media screen  and (max-width: 500px) {
 
   #runner {
@@ -166,13 +227,15 @@ left: -7rem;
     font-size: 1rem;
   }
 }
+
+
 </style>
 <script>
 var accessToken;
 var stravaUrl;
 var newTotal = 0;
 var target = 500;
-
+var runCount = 0-
 
 fetch("https://www.strava.com/api/v3/oauth/token", {
   body: "client_id=67886&client_secret=a1c26e6e240b2f33f9a7b238beb67e3429064745&grant_type=refresh_token&refresh_token=c3f97d70bc5ec4ea18b5e5774d1e6517787d7a0a",
@@ -184,17 +247,20 @@ fetch("https://www.strava.com/api/v3/oauth/token", {
 .then(response => response.json())
 .then(function(data){ 
   accessToken = data.access_token
-  stravaUrl =
   console.log(accessToken)
 })
 .then(function distance () {
   console.log( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200");
-  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200")
+  // fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200")
+  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=162510800&per_page=200")
   .then(function(resp) {
     resp.json().then(function(data) {
       var p = 0;
       var rc = 0;
    console.log(data);
+   
+    runCount = data.length
+    console.log(runCount);
 
       data.filter(function(activity) {
         return activity.type === 'Run' 
@@ -213,6 +279,31 @@ fetch("https://www.strava.com/api/v3/oauth/token", {
       document.getElementById('progress').style.width = progress+"%";
       document.getElementById('runner').style.left = progress-11+"%";
       document.getElementById('currentKm').innerHTML = meters+"km so far";
+
+      document.getElementById('run1Name').innerHTML = data[runCount-1].athlete.firstname+" "+data[runCount-1].athlete.lastname;
+      document.getElementById('run1Distance').innerHTML = (data[runCount-1].distance/1000).toFixed(2)+"km";
+      // document.getElementById('run1Time').innerHTML = (data[runCount-1].moving_time/60).toFixed(0)+":" +(data[runCount-1].moving_time%60);
+      // document.getElementById('run1Pace').innerHTML = ((data[runCount-1].moving_time/60)/(data[runCount-1].distance/1000)).toFixed(2)
+
+      document.getElementById('run2Name').innerHTML = data[runCount-2].athlete.firstname+" "+data[runCount-2].athlete.lastname;
+      document.getElementById('run2Distance').innerHTML = (data[runCount-2].distance/1000).toFixed(2)+"km";
+      // document.getElementById('run2Time').innerHTML = (data[runCount-2].moving_time/60).toFixed(0)+":" +(data[runCount-2].moving_time%60);
+      // document.getElementById('run2Pace').innerHTML = ((data[runCount-2].moving_time/60)/(data[runCount-2].distance/1000)).toFixed(2)
+
+      document.getElementById('run3Name').innerHTML = data[runCount-3].athlete.firstname+" "+data[runCount-3].athlete.lastname;
+      document.getElementById('run3Distance').innerHTML = (data[runCount-3].distance/1000).toFixed(2)+"km";
+      // document.getElementById('run3Time').innerHTML = (data[runCount-3].moving_time/60).toFixed(0)+":" +(data[runCount-3].moving_time%60);
+      // document.getElementById('run3Pace').innerHTML = ((data[runCount-3].moving_time/60)/(data[runCount-3].distance/1000)).toFixed(0)+":" +((((data[runCount-3].moving_time/60)/(data[runCount-3].distance/1000))%60)*60);
+
+      document.getElementById('run4Name').innerHTML = data[runCount-4].athlete.firstname+" "+data[runCount-4].athlete.lastname;
+      document.getElementById('run4Distance').innerHTML = (data[runCount-4].distance/1000).toFixed(2)+"km";
+      // document.getElementById('run4Time').innerHTML = (data[runCount-4].moving_time/60).toFixed(0)+":" +(data[runCount-4].moving_time%60)*60;
+      // document.getElementById('run4Pace').innerHTML = ((data[runCount-4].moving_time/60)/(data[runCount-4].distance/1000)).toFixed(2)
+
+      document.getElementById('run5Name').innerHTML = data[runCount-5].athlete.firstname+" "+data[runCount-5].athlete.lastname;
+      document.getElementById('run5Distance').innerHTML = (data[runCount-5].distance/1000).toFixed(2)+"km";
+      // document.getElementById('run5Time').innerHTML = (data[runCount-5].moving_time/60).toFixed(0)+":" +(data[runCount-5].moving_time%60);
+      // document.getElementById('run5Pace').innerHTML = ((data[runCount-5].moving_time/60)/(data[runCount-5].distance/1000)).toFixed(2)
       // document.getElementById('runCount').innerHTML = runCount+" runs recorded";
     });
   }).catch(function(err) {
@@ -279,10 +370,51 @@ function round(value, decimals) {
         </a>
         </div>
      </div>
-  <div class="row">
-    <div class="col">
+
+     <div class="table">
+      <div class="table-header">
+        <div class="header__item"><a id="name" class="filter__link" href="#">Latest Runners</a></div>
+        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Distance</a></div>
+        <!-- <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Time</a></div>
+        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Pace (min/km)</a></div> -->
+      </div>
+      <div class="table-content">	
+        <div class="table-row" id="run1">		
+          <div class="table-data" id="run1Name"></div>
+          <div class="table-data" id="run1Distance"></div>
+          <!-- <div class="table-data" id="run1Time">1</div>
+          <div class="table-data" id="run1Pace">5</div> -->
+        </div>
+        <div class="table-row" id="run2">
+          <div class="table-data" id="run2Name"></div>
+          <div class="table-data"id="run2Distance"></div>
+          <!-- <div class="table-data" id="run2Time">1</div>
+          <div class="table-data" id="run2Pace">3</div> -->
+        </div>
+        <div class="table-row" id="run3">
+          <div class="table-data" id="run3Name"></div>
+          <div class="table-data" id="run3Distance"></div>
+          <!-- <div class="table-data" id="run3Time">2</div>
+          <div class="table-data" id="run3Pace">2</div> -->
+        </div>
+        <div class="table-row" id="run4">
+          <div class="table-data" id="run4Name"></div>
+          <div class="table-data" id="run4Distance"></div>
+          <!-- <div class="table-data" id="run4Time">2</div>
+          <div class="table-data" id="run4Pace">2</div>-->
+        </div>
+        <div class="table-row" id="run5">
+          <div class="table-data" id="run5Name"></div>
+          <div class="table-data" id="run5Distance"></div>
+          <!-- <div class="table-data" id="run5Time">2</div>
+          <div class="table-data" id="run5Pace">2</div> -->
+        </div>
+      </div>	
     </div>
-  </div>
+
+
+
+
 </div>
 </body>
 </html>
