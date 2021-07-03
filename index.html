@@ -34,6 +34,9 @@
   a:hover {
     color: white
   }
+  p {
+    font-size: 2rem;
+  }
   p a{
     text-decoration: underline;
   }
@@ -93,6 +96,8 @@ background-color: #fc4c02;
 .goal {
   text-align: right;
   color: #FFF;
+  font-size: 2rem;
+
 }
 
 .goal-stat{
@@ -144,16 +149,23 @@ left: -7rem;
 }
 
 @media screen  and (max-width: 500px) {
-  #goal{
-    font-size: 2rem;
-  }
+
   #runner {
     width: 5rem;
     height: auto;
     left: -3.5rem;
   }
+  p {
+    font-size: 1rem;
+  }
+
+  .goal-stat{
+    font-size: 1rem;
+  }
+  .goal{
+    font-size: 1rem;
+  }
 }
- 
 </style>
 <script>
 var accessToken;
@@ -193,7 +205,6 @@ fetch("https://www.strava.com/api/v3/oauth/token", {
         p += round(activity.distance, 4);
         rc += 1;
       });
-
       var meters = parseFloat(p/1000).toFixed(0);
       var progress = (meters/target)*100;
       var runCount = rc;
@@ -228,17 +239,23 @@ function round(value, decimals) {
   </div>
   <div class="row">
     <div id=countdown-wrap>
-      <div class="goal" id="goal-label">Goal</div>
-      <div class="goal" id="goal">500km</div>
       <img id="runner" src="runner.png">
       <div id="glass">
         <div id="progress">
         </div>
       </div>
+      <div class="row">
+        <div class="col-10">
       <div class="goal-stat">
           <span id="currentKm" class="goal-label">0km so far</span>
       </div> 
+      </div>
+      <div class="col-2">
+        <div class="goal" id="goal-label">Goal</div>
+        <div class="goal" id="goal">500km</div>
+      </div>
     </div>
+  </div>
   </div>
 
   <div class="row center">

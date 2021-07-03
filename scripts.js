@@ -55,11 +55,6 @@ var result = document.getElementById('result');
 var newTotal = 0;
 var target = 900;
 
-
-// distance();
-
-
-
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
