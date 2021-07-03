@@ -251,8 +251,8 @@ fetch("https://www.strava.com/api/v3/oauth/token", {
 })
 .then(function distance () {
   console.log( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200");
-  // fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200")
-  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=162510800&per_page=200")
+  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200")
+  // fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=162510800&per_page=200")
   .then(function(resp) {
     resp.json().then(function(data) {
       var p = 0;
