@@ -56,7 +56,7 @@
     text-decoration: none;
     transition: 1s ease-in-out;
     color: white;
-    margin: 1rem;
+    margin: 20px 50px;
     max-width: 400px;
 }
 
@@ -126,8 +126,8 @@ background-color: #fc4c02;
  #runner {
   width: 9rem;
   height:auto;
-position: relative;
-left: -7rem;
+  position: relative;
+  left: -7rem;
 }
 #calendarIcon {
   font-size: 2rem; 
@@ -153,7 +153,9 @@ left: -7rem;
 	border:1px solid white;
   border-radius: 8px;
   color: white;
-  margin-top: 2rem;
+  margin-top: 0;
+  max-width: 900px;
+  margin: 2rem auto;
 }
 
 .table-header {
@@ -225,6 +227,9 @@ left: -7rem;
   }
   .goal{
     font-size: 1rem;
+  }
+  .table{
+    max-width: 300px;
   }
 }
 
@@ -348,30 +353,8 @@ function round(value, decimals) {
     </div>
   </div>
   </div>
-
-  <div class="row center">
-    <div class="col-sm ctas strava">
-      <a  target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club">
-          <div class="row center">
-            <div class="col">
-              <span class="iconify" width="2rem" data-icon="mdi-strava" data-inline="false"></span>Join the Rokt Run Club on Strava
-            </div> 
-        </div>
-      </a>
-      </div>
      
-      <div class="col-sm ctas beetroot">
-      <a class="col" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">
-        <div class="col">
-          <div>
-            <span class="mdi mdi-calendar-plus"></span> Add run club to your Calendar
-          </div>
-          </div>
-        </a>
-        </div>
-     </div>
-
-     <div class="table">
+  <div class="table">
       <div class="table-header">
         <div class="header__item"><a id="name" class="filter__link" href="#">Latest Runners</a></div>
         <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Distance</a></div>
@@ -410,8 +393,29 @@ function round(value, decimals) {
           <div class="table-data" id="run5Pace">2</div> -->
         </div>
       </div>	
-    </div>
+  </div>
 
+  <div class="row center">
+    <div class="col-sm ctas strava">
+      <a  target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club">
+          <div class="row center">
+            <div class="col">
+              <span class="iconify" width="2rem" data-icon="mdi-strava" data-inline="false"></span>Join the Rokt Run Club on Strava
+            </div> 
+        </div>
+      </a>
+      </div>
+     
+      <div class="col-sm ctas beetroot">
+      <a class="col" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">
+        <div class="col">
+          <div>
+            <span class="mdi mdi-calendar-plus"></span> Add run club to your Calendar
+          </div>
+          </div>
+        </a>
+        </div>
+     </div>
 
 
 
