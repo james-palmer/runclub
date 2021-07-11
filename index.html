@@ -25,6 +25,7 @@
     color: #fff;
     background-color: #000;
     width: 100%;
+    height: 100%;
     overflow-x: hidden;
   }
   a {
@@ -56,7 +57,7 @@
     text-decoration: none;
     transition: 1s ease-in-out;
     color: white;
-    margin: 20px 50px;
+    margin: 5px 50px;
     max-width: 400px;
 }
 
@@ -139,7 +140,7 @@ background-color: #fc4c02;
   height: auto  ;
   /* margin: 10% auto; Will not center vertically and won't work in IE6/7. */
   float: left;
-  max-width: 300px;
+  max-width: 200px;
 }
 .center{
   display: flex;
@@ -153,7 +154,7 @@ background-color: #fc4c02;
 	border:1px solid white;
   border-radius: 8px;
   color: white;
-  margin-top: 0;
+  margin: 0px auto 5px auto !important;
   max-width: 900px;
   margin: 2rem auto;
 }
@@ -256,7 +257,7 @@ fetch("https://www.strava.com/api/v3/oauth/token", {
 })
 .then(function distance () {
   console.log( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200");
-  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=200")
+  fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=1625320800&per_page=45")
   // fetch( "https://www.strava.com/api/v3/clubs/953670/activities?access_token="+accessToken+"&after=162510800&per_page=200")
   .then(function(resp) {
     resp.json().then(function(data) {
@@ -325,8 +326,8 @@ function round(value, decimals) {
 <div class="container">
   <div class="row center">
     <div class="col-8">
-      <h1>Lockdown Run Club</h1>
-      <p>Rokt will donate $1 for each km logged between 4th-11th July 2021 in support of the <a target="_blank" href="https://www.standup.org.au/firstnations_partnerships">Stand Up, First Nations partnership</a>
+      <h1>Rokt Lockdown Run Club</h1>
+      <p>Fundraising for <a target="_blank" href="https://www.standup.org.au/firstnations_partnerships">NAIDOC week</a>, 4th-11th July.
       </h2> </p>
     </div>
     <div class="col-4">
@@ -353,71 +354,74 @@ function round(value, decimals) {
     </div>
   </div>
   </div>
-     
-  <div class="table">
-      <div class="table-header">
-        <div class="header__item"><a id="name" class="filter__link" href="#">Latest Runners</a></div>
-        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Distance</a></div>
-        <!-- <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Time</a></div>
-        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Pace (min/km)</a></div> -->
+  <div class="row">
+    <div class="col-sm">
+      <div class="table">
+        <div class="table-header">
+          <div class="header__item"><a id="name" class="filter__link" href="#">Latest Runners</a></div>
+          <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Distance</a></div>
+          <!-- <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Time</a></div>
+          <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Pace (min/km)</a></div> -->
+        </div>
+        <div class="table-content">	
+          <div class="table-row" id="run1">		
+            <div class="table-data" id="run1Name"></div>
+            <div class="table-data" id="run1Distance"></div>
+            <!-- <div class="table-data" id="run1Time">1</div>
+            <div class="table-data" id="run1Pace">5</div> -->
+          </div>
+          <div class="table-row" id="run2">
+            <div class="table-data" id="run2Name"></div>
+            <div class="table-data"id="run2Distance"></div>
+            <!-- <div class="table-data" id="run2Time">1</div>
+            <div class="table-data" id="run2Pace">3</div> -->
+          </div>
+          <div class="table-row" id="run3">
+            <div class="table-data" id="run3Name"></div>
+            <div class="table-data" id="run3Distance"></div>
+            <!-- <div class="table-data" id="run3Time">2</div>
+            <div class="table-data" id="run3Pace">2</div> -->
+          </div>
+          <div class="table-row" id="run4">
+            <div class="table-data" id="run4Name"></div>
+            <div class="table-data" id="run4Distance"></div>
+            <!-- <div class="table-data" id="run4Time">2</div>
+            <div class="table-data" id="run4Pace">2</div>-->
+          </div>
+          <div class="table-row" id="run5">
+            <div class="table-data" id="run5Name"></div>
+            <div class="table-data" id="run5Distance"></div>
+            <!-- <div class="table-data" id="run5Time">2</div>
+            <div class="table-data" id="run5Pace">2</div> -->
+          </div>
+        </div>	
       </div>
-      <div class="table-content">	
-        <div class="table-row" id="run1">		
-          <div class="table-data" id="run1Name"></div>
-          <div class="table-data" id="run1Distance"></div>
-          <!-- <div class="table-data" id="run1Time">1</div>
-          <div class="table-data" id="run1Pace">5</div> -->
-        </div>
-        <div class="table-row" id="run2">
-          <div class="table-data" id="run2Name"></div>
-          <div class="table-data"id="run2Distance"></div>
-          <!-- <div class="table-data" id="run2Time">1</div>
-          <div class="table-data" id="run2Pace">3</div> -->
-        </div>
-        <div class="table-row" id="run3">
-          <div class="table-data" id="run3Name"></div>
-          <div class="table-data" id="run3Distance"></div>
-          <!-- <div class="table-data" id="run3Time">2</div>
-          <div class="table-data" id="run3Pace">2</div> -->
-        </div>
-        <div class="table-row" id="run4">
-          <div class="table-data" id="run4Name"></div>
-          <div class="table-data" id="run4Distance"></div>
-          <!-- <div class="table-data" id="run4Time">2</div>
-          <div class="table-data" id="run4Pace">2</div>-->
-        </div>
-        <div class="table-row" id="run5">
-          <div class="table-data" id="run5Name"></div>
-          <div class="table-data" id="run5Distance"></div>
-          <!-- <div class="table-data" id="run5Time">2</div>
-          <div class="table-data" id="run5Pace">2</div> -->
-        </div>
-      </div>	
+    </div>
+    <!-- <div class="col-sm">
+      
+    </div> -->
   </div>
-
-  <div class="row center">
-    <div class="col-sm ctas strava">
-      <a  target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club">
-          <div class="row center">
+      <div class="row center">
+        <div class="col-sm ctas strava">
+          <a  target="_blank" href="https://www.strava.com/dashboard?club_id=953670&feed_type=club">
+              <div class="row center">
+                <div class="col">
+                  <span class="iconify" width="2rem" data-icon="mdi-strava" data-inline="false"></span>Join the Rokt Run Club on Strava
+                </div> 
+            </div>
+          </a>
+          </div>
+        
+          <div class="col-sm ctas beetroot">
+          <a class="col" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">
             <div class="col">
-              <span class="iconify" width="2rem" data-icon="mdi-strava" data-inline="false"></span>Join the Rokt Run Club on Strava
-            </div> 
+              <div>
+                <span class="mdi mdi-calendar-plus"></span> Add run club to your Calendar
+              </div>
+              </div>
+            </a>
+            </div>
         </div>
-      </a>
-      </div>
-     
-      <div class="col-sm ctas beetroot">
-      <a class="col" href="https://roktcompany.roktcalendar.com/sydney-run-club" data-popup="lightbox" data-type="custombutton" data-calreply-binding="true">
-        <div class="col">
-          <div>
-            <span class="mdi mdi-calendar-plus"></span> Add run club to your Calendar
-          </div>
-          </div>
-        </a>
-        </div>
-     </div>
-
-
 
 </div>
 </body>
